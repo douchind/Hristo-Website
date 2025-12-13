@@ -1,0 +1,71 @@
+.hidden {
+	display: none !important;
+}
+
+.about-img-wrap .image-one{
+	aspect-ratio: 1;
+}
+
+.about-img-wrap .image-two{
+	aspect-ratio: 1;
+}
+
+.about-img-wrap img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.single-service-wrap {
+	margin-bottom: 0;
+	height: 100%;
+}
+
+.single-project-wrapper {
+	aspect-ratio: 3/2;
+}
+
+.single-project-wrapper .project-bg {
+	width: 100%;
+	height: 100%;
+}
+
+.single-project-wrapper .project-bg img {
+	object-fit: cover;
+}
+
+.about-list-item ul li {
+	display: inline-flex;
+	align-items: baseline;
+}
+
+
+.video-section {
+	background-image: url('../img/slider/solar-panel.jpg');
+}
+
+.footer-area .footer__logo {
+	max-width: 110px;
+}
+
+.footer-area .footer__logo img {
+	border-radius: 100%;
+}
+
+.footer-area .phone-number {
+	font-size: 16px;
+	color: #fff;
+	margin-top: 16px;
+}
+
+.header-top-area .test a {
+	color: #fff;
+	font-size: 14px;
+	margin-right: 14px;
+}
+
+.header-top-area .test a i {
+	margin-right: 4px;
+}
