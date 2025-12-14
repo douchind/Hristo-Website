@@ -1,6 +1,11 @@
 .hidden {
 	display: none !important;
 }
+a {
+	text-decoration: none;
+	color: #fff;
+	font-size: 14px;
+}
 
 .about-img-wrap .image-one{
 	aspect-ratio: 1;
@@ -60,6 +65,7 @@
 	margin-top: 16px;
 }
 
+/*Header top area*/
 .header-top-area .test a {
 	color: #fff;
 	font-size: 14px;
@@ -68,4 +74,65 @@
 
 .header-top-area .test a i {
 	margin-right: 4px;
+}
+
+/*Header area*/
+.header-area .logo.logo--dark img {
+	border-radius: 100%;
+}
+
+@media screen and (max-width: 767px) {
+	.header-area .logo.logo--dark img {
+		width: 60px;
+		height: 60px;
+	}
+
+	.header-area .header-inner-box .logo.logo--dark {
+		height: 60px;
+	}
+
+	.header-area .navigation {
+		height: auto;
+		padding: 10px 0;
+	}
+}
+
+/*breadcrumb-area*/
+.breadcrumb-area {
+	background-image: none;
+	position: relative;
+}
+
+.breadcrumb-area .breadcrumb-area__image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/*service-details-area*/
+.service-details-area .service-details-img img {
+	width: 100%;
+	aspect-ratio: 4/3;
+}
+
+/*service-details-wrap*/
+.service-details-wrap ul {
+	list-style-type: disc;
+	margin-bottom: 24px;
+	margin-left: 14px;
+	color: #797C7F;
+}
+
+/*contact-list-item*/
+.contact-list-item a {
+	font-size: 17px;
+	color: #1F2747;
+	transition: color .3s ease-in-out;
+}
+
+.contact-list-item a:hover {
+	color: #FF6B00;
 }
