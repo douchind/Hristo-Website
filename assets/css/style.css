@@ -5842,18 +5842,26 @@ button.mfp-arrow {
 }
 
 .blog-dtl-bg {
-  background: url(../img/blog/blog-details.jpg);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   height: 500px;
   position: relative;
   z-index: 1;
 }
+
 @media (max-width: 767px) {
   .blog-dtl-bg {
     height: 600px;
   }
+}
+
+.blog-dtl-bg .blog__image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1
 }
 .blog-dtl-bg:after {
   position: absolute;
