@@ -4123,13 +4123,13 @@ button.mfp-arrow {
   font-size: 20px;
 }
 
-.project-details-content h3 {
+.project-details-wrap .project-details-inner h3 {
   font-size: 35px;
   font-weight: 500;
   margin: 30px 0;
 }
 
-.project-details-content p {
+.project-details-wrap .project-details-inner p {
   font-size: 18px;
   margin-bottom: 30px;
 }
