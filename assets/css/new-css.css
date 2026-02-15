@@ -321,3 +321,8 @@ a {
 .promo-section .promo-section__image-wrapper:hover img {
 	transform: scale(1.1);
 }
+
+.list-bullets {
+	/* list-style-type: disc; */
+	font-size: 18px;
+}
