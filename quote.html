@@ -241,13 +241,20 @@
                 <div class="col-xl-6 col-lg-6">
                     <div class="quote-form-wrap">
                         <div class="quote-form">
-                            <form action="index.html">
-                                <span class="form-icon user-icon"></span><span class="form-control-wrap"><input type="text" placeholder="Name"></span>
-                                <span class="form-icon phone-icon"></span><span class="form-control-wrap"><input type="text" placeholder="Phone"></span>
-                                <span class="form-icon email-icon"></span><span class="form-control-wrap"><input type="email" placeholder="Email"></span>
-                                <span class="form-icon subject-icon"></span><span class="form-control-wrap"><input type="text" placeholder="Subject"></span>
-                                <span class="form-icon text-icon"></span><span class="form-control-wrap"><textarea name="message" id="message" placeholder="How can we help you? Feel free to get in touch!"></textarea></span>
-                                <input type="submit" value="Get in Touch">
+                            <form id="quoteForm" action="https://api.web3forms.com/submit" method="POST">
+                                <!-- ЗАМЕНИ стойността по-долу с твоя безплатен ключ от web3forms.com -->
+                                <input type="hidden" name="access_key" value="27ead065-0c3a-4087-be3b-77447ae02aea">
+                                <input type="hidden" name="subject" value="Нова заявка от ekotex7.com">
+                                <input type="hidden" name="from_name" value="Ekotex7 уебсайт">
+                                <!-- Honeypot против спам ботове - не пипай -->
+                                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                                <span class="form-icon user-icon"></span><span class="form-control-wrap"><input type="text" name="name" placeholder="Име" required></span>
+                                <span class="form-icon phone-icon"></span><span class="form-control-wrap"><input type="text" name="phone" placeholder="Телефон"></span>
+                                <span class="form-icon email-icon"></span><span class="form-control-wrap"><input type="email" name="email" placeholder="Имейл" required></span>
+                                <span class="form-icon subject-icon"></span><span class="form-control-wrap"><input type="text" name="subject_text" placeholder="Тема"></span>
+                                <span class="form-icon text-icon"></span><span class="form-control-wrap"><textarea name="message" id="message" placeholder="Как можем да Ви помогнем? Свържете се с нас!" required></textarea></span>
+                                <input type="submit" value="Изпрати">
+                                <p id="quoteResult" style="margin-top:15px;"></p>
                             </form>
                         </div>
                     </div>
@@ -395,6 +402,53 @@
     <script src="assets/js/SplitText.min.js"></script>           
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
+
+    <!-- Quote Form (Web3Forms) JS -->
+    <script>
+        (function () {
+            var form = document.getElementById("quoteForm");
+            if (!form) return;
+            var result = document.getElementById("quoteResult");
+
+            form.addEventListener("submit", function (e) {
+                e.preventDefault();
+                var formData = new FormData(form);
+                var json = JSON.stringify(Object.fromEntries(formData));
+
+                result.style.color = "#555";
+                result.innerHTML = "Изпращане...";
+
+                fetch("https://api.web3forms.com/submit", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Accept: "application/json"
+                    },
+                    body: json
+                })
+                    .then(async function (response) {
+                        var data = await response.json();
+                        if (response.status == 200) {
+                            result.style.color = "green";
+                            result.innerHTML = "Благодарим! Заявката е изпратена успешно.";
+                            form.reset();
+                        } else {
+                            result.style.color = "red";
+                            result.innerHTML = data.message || "Възникна грешка. Опитайте отново.";
+                        }
+                    })
+                    .catch(function () {
+                        result.style.color = "red";
+                        result.innerHTML = "Възникна грешка с връзката. Опитайте отново.";
+                    })
+                    .then(function () {
+                        setTimeout(function () {
+                            result.innerHTML = "";
+                        }, 6000);
+                    });
+            });
+        })();
+    </script>
 
 </body>
 

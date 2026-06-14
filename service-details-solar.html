@@ -412,11 +412,17 @@
 					<div class="sidebar-wrap white-bg">
 						<div class="contact-form">
 							<h5>Направете запитване</h5>
-							<form action="#">
-								<input type="text" placeholder="Име и Фамилия">
-								<input type="email" placeholder="Имейл Адрес">
-								<textarea name="message" id="message" cols="10" rows="10" placeholder="Съобщение"></textarea>
+							<form id="ekotexServiceForm" action="https://api.web3forms.com/submit" method="POST">
+								<input type="hidden" name="access_key" value="27ead065-0c3a-4087-be3b-77447ae02aea">
+								<input type="hidden" name="subject" value="Ново запитване (Фотоволтаични системи) от ekotex7.com">
+								<input type="hidden" name="from_name" value="Ekotex7 уебсайт">
+								<input type="hidden" name="service" value="Фотоволтаични системи">
+								<input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+								<input type="text" name="name" placeholder="Име и Фамилия" required>
+								<input type="email" name="email" placeholder="Имейл Адрес" required>
+								<textarea name="message" id="message" cols="10" rows="10" placeholder="Съобщение" required></textarea>
 								<input type="submit" value="Изпрати">
+								<p id="serviceResult" style="margin-top:15px;"></p>
 							</form>
 						</div>
 						<div class="contact-info">
@@ -565,6 +571,41 @@
 	<script src="assets/js/SplitText.min.js"></script>           
 	<!-- Main JS -->
 	<script src="assets/js/main.js"></script>
+
+	<!-- Service Form (Web3Forms) JS -->
+	<script>
+		(function () {
+			var form = document.getElementById("ekotexServiceForm");
+			if (!form) return;
+			var result = document.getElementById("serviceResult");
+			form.addEventListener("submit", function (e) {
+				e.preventDefault();
+				var json = JSON.stringify(Object.fromEntries(new FormData(form)));
+				result.style.color = "#555";
+				result.innerHTML = "Изпращане...";
+				fetch("https://api.web3forms.com/submit", {
+					method: "POST",
+					headers: { "Content-Type": "application/json", Accept: "application/json" },
+					body: json
+				}).then(async function (response) {
+					var data = await response.json();
+					if (response.status == 200) {
+						result.style.color = "green";
+						result.innerHTML = "Благодарим! Запитването е изпратено успешно.";
+						form.reset();
+					} else {
+						result.style.color = "red";
+						result.innerHTML = data.message || "Възникна грешка. Опитайте отново.";
+					}
+				}).catch(function () {
+					result.style.color = "red";
+					result.innerHTML = "Възникна грешка с връзката. Опитайте отново.";
+				}).then(function () {
+					setTimeout(function () { result.innerHTML = ""; }, 6000);
+				});
+			});
+		})();
+	</script>
 
 </body>
 

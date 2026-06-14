@@ -6134,6 +6134,28 @@ span.form-icon.text-icon:before {
   margin-bottom: 15px;
 }
 
+.contact-form-wrap .nice-select {
+  background: #fff;
+  border: none;
+  border-radius: 0;
+  float: none;
+  width: 100%;
+  height: auto;
+  line-height: 1.6;
+  padding: 13px 20px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  color: #555;
+}
+
+.contact-form-wrap .nice-select:after {
+  right: 20px;
+}
+
+.contact-form-wrap .nice-select .list {
+  width: 100%;
+}
+
 .contact-form-wrap input[type=submit] {
   background: #FF7700;
   color: #fff;
